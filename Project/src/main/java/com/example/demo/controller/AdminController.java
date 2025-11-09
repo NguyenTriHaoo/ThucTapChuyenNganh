@@ -20,11 +20,6 @@ public class AdminController {
         return "admin/Product-main/product-list";
     }
 
-    @GetMapping("/admin/Management-main/menu")
-    public String MenuList(){
-        return "admin/Management-main/menu-list";
-    }
-
     @GetMapping("/admin/Management-main/role")
     public String roleList(){
         return "admin/Management-main/role-list";
