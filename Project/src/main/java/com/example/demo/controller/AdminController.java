@@ -42,7 +42,7 @@ public class AdminController {
 
     @GetMapping("/admin/Storage-main/export-storage")
     public String exportStorage(){
-        return "admin/Storage-main/add-storage-list";
+        return "admin/Storage-main/export-storage-list";
     }
 
     @GetMapping("/admin/Storage-main/storage-history")
