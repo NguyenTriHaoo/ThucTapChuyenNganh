@@ -36,7 +36,6 @@ public class SecurityConfig {
                 form->
                             form
                                     .loginPage("/login")
-                                    .defaultSuccessUrl("/")
                                     .loginProcessingUrl("/authenticateTheUser")
                                     .permitAll()
         )
