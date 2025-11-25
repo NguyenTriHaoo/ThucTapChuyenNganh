@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AdminController {
     @GetMapping("/")
@@ -10,10 +9,10 @@ public class AdminController {
         return "index";
     }
 
-    @GetMapping("/admin/Product-main/category")
-    public String categoryList(){
-        return "admin/Product-main/category-list";
-    }
+//    @GetMapping("/admin/Product-main/category")
+//    public String categoryList(){
+//        return "admin/Product-main/category-list";
+//    }
 
     @GetMapping("/admin/Product-main/product")
     public String productList(){
