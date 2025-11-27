@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="category")
@@ -16,6 +17,18 @@ public class Category {
         private String image;
         @Column(name="status")
         private int status;
+
+        //Moi quan he one-to-many
+        @OneToMany(mappedBy="category")
+        private List<Product> products;
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
 
     public int getId() {
         return id;

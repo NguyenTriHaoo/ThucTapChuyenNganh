@@ -14,10 +14,10 @@ public class AdminController {
 //        return "admin/Product-main/category-list";
 //    }
 
-    @GetMapping("/admin/Product-main/product")
-    public String productList(){
-        return "admin/Product-main/product-list";
-    }
+//    @GetMapping("/admin/Product-main/product")
+//    public String productList(){
+//        return "admin/Product-main/product-list";
+//    }
 
     @GetMapping("/admin/Management-main/role")
     public String roleList(){

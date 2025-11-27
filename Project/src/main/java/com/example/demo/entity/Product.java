@@ -23,22 +23,40 @@ public class Product {
     @Column(name="price")
     private float price;
 
-    @Column(name="id_cate")
-    private int id_cate;
 
     @Column(name="status")
     private int status;
 
+    //định nghĩa many-to-one
+    @ManyToOne
+    @JoinColumn(name = "id_cate", nullable = false) //cột khóa ngoại
+    private Category category;
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     public Product() {
     }
 
-    public Product(String title, String image, String description, float price, String content, int id_cate, int status) {
+    public Product(String title, String image, String description, float price, String content, int status) {
         this.title = title;
         this.image = image;
         this.description = description;
         this.price = price;
         this.content = content;
-        this.id_cate = id_cate;
         this.status = status;
     }
 
@@ -56,10 +74,6 @@ public class Product {
 
     public String getContent() {
         return content;
-    }
-
-    public int getId_cate() {
-        return id_cate;
     }
 
     public float getPrice() {
@@ -90,10 +104,6 @@ public class Product {
         this.price = price;
     }
 
-    public void setId_cate(int id_cate) {
-        this.id_cate = id_cate;
-    }
-
     public void setStatus(int status) {
         this.status = status;
     }
@@ -107,7 +117,6 @@ public class Product {
                 ", description='" + description + '\'' +
                 ", content='" + content + '\'' +
                 ", price=" + price +
-                ", id_cate=" + id_cate +
                 ", status=" + status +
                 '}';
     }
