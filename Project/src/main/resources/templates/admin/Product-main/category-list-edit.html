@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="https://www.ultraq.net/thymeleaf/layout"
+      layout:decorate="~{admin/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="main-content">
+    <form th:action="@{/admin/Product-main/save}" method="post" th:object="${category}">
+        <input type="hidden" th:field="*{id}">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" th:field="*{name}"></input>
+            <label for="image" class="form-label">Image</label>
+            <input type="text" class="form-control" id="image" th:field="*{image}"></input>
+            <label for="status" class="form-label">Status</label>
+            <select th:field="*{status}" class="form-control" id="status">
+                <option value="1">On</option>
+                <option value="0">Off</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+</body>
+</html>

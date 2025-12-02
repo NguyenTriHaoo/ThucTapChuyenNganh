@@ -24,16 +24,16 @@ public class CategoryServiceImp implements CategoryService{
 
     @Override
     public Category findById(int id) {
-        return null;
+        return categoryDAO.findById(id);
     }
 
     @Override
     public Category save(Category category) {
-        return null;
+        return categoryDAO.save(category);
     }
 
     @Override
     public void deleteById(int id) {
-
+        categoryDAO.deleteById(id);
     }
 }

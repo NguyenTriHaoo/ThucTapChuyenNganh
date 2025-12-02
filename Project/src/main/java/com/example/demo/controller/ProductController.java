@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/admin/Product-main")
 public class ProductController {
     private ProductService productService;
 
@@ -22,10 +21,16 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/product")
-    public  String list(Model model){
+    @GetMapping("/admin/Product-main/product")
+    public String list(Model model){
         List<Product> products = productService.findAll();
         model.addAttribute("products",products);
         return "admin/Product-main/product-list";
     }
+//    @GetMapping("/home")
+//    public String listShop(Model model){
+//        List<Product> products = productService.findAll();
+//        model.addAttribute("products",products);
+//        return "indexnhacungcap";
+//    }
 }

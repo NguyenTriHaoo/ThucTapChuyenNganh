@@ -27,16 +27,19 @@ public class CategoryDAOimplement implements CategoryDAO{
 
     @Override
     public Category findById(int id) {
-        return null;
+        return em.find(Category.class,id);
     }
 
     @Override
+    @Transactional
     public Category save(Category category) {
-        return null;
+        Category saved = em.merge(category);
+        return saved;
     }
 
     @Override
     public void deleteById(int id) {
-
+        Category category = em.find(Category.class,id);
+        em.remove(category);
     }
 }

@@ -101,45 +101,26 @@
 <!-- ***** Banner End ***** -->
 
 <!-- Categories Section Begin -->
-<section class="categories">
-    <div class="container" style="margin-top:100px;">
-        <div class="row">
-            <div class="categories__slider owl-carousel">
-                <div class="col-lg-3">
-                    <div class="categories__item set-bg" th:data-setbg="@{/cssProduct-Cate-Shop/assetCategory/img/categories/cat-1.jpg}">
-                        <h5><a href="#">Laptop</a></h5>
+        <section class="categories">
+            <div class="container" style="margin-top:100px;">
+                <div class="row">
+                    <div class="categories__slider owl-carousel">
+                        <div class="col-lg-3" th:each="category : ${categories}">
+                            <div class="categories__item set-bg" th:data-setbg="${category.image}">
+                                <h5 th:text="${category.name}"></h5>
+                            </div>
                     </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="categories__item set-bg" th:data-setbg="@{/cssProduct-Cate-Shop/assetCategory/img/categories/cat-2.jpg}">
-                        <h5><a href="#">Dried Fruit</a></h5>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="categories__item set-bg" th:data-setbg="@{/cssProduct-Cate-Shop/assetCategory/img/categories/cat-3.jpg}">
-                        <h5><a href="#">Vegetables</a></h5>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="categories__item set-bg" th:data-setbg="@{/cssProduct-Cate-Shop/assetCategory/img/categories/cat-4.jpg}">
-                        <h5><a href="#">drink fruits</a></h5>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="categories__item set-bg" th:data-setbg="@{/cssProduct-Cate-Shop/assetCategory/img/categories/cat-5.jpg}">
-                        <h5><a href="#">drink fruits</a></h5>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
 <!-- Categories Section End -->
 
 <!-- Product -->
 <section class="bg0 p-t-23 p-b-140" style="margin-top:70px;">
     <div class="container">
         <div class="p-b-10">
+
             <h3 class="ltext-103 cl5">
                 Sản Phẩm Nổi Bật
             </h3>

@@ -43,7 +43,7 @@
 <nav class="pc-sidebar" style="background-color:#F5F5F5;">
     <div class="navbar-wrapper">
         <div class="m-header">
-            <a href="/" class="b-brand text-primary" style="display: flex; margin-top: 20px; align-items: center; gap: 10px; text-decoration: none;">
+            <a th:href="@{/admin}" class="b-brand text-primary" style="display: flex; margin-top: 20px; align-items: center; gap: 10px; text-decoration: none;">
                 <!-- ========   Change your logo from here   ============ -->
                 <img th:src="@{/images/CabyKhoTrang.png}" style="width: 75px; height: auto;" alt="logo">
                 <h3>CAPYKHO</h3>
@@ -192,8 +192,12 @@
 </header>
 <!-- [ Header ] end -->
 <!-- [ Main Content ] start -->
+<div class="pc-container">
+    <div class="pc-content">
 <div layout:fragment="main-content">
 
+</div>
+    </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js}"></script>
