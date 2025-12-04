@@ -24,16 +24,16 @@ public class ProductServiceImp implements ProductService{
 
     @Override
     public Product findById(int id) {
-        return null;
+        return productDAO.findById(id);
     }
 
     @Override
-    public Product save(Product category) {
-        return null;
+    public Product save(Product product) {
+        return productDAO.save(product);
     }
 
     @Override
     public void deleteById(int id) {
-
+        productDAO.deleteById(id);
     }
 }

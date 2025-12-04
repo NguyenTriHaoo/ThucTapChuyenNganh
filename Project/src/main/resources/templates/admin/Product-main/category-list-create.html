@@ -10,13 +10,13 @@
 <div layout:fragment="main-content">
     <div class="container">
         <div class="row">
-            <form th:action="@{/admin/Product-main/save}" method="post" th:object="${category}">
+            <form th:action="@{/admin/Product-main/saveCategory}" method="post" th:object="${category}">
 
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
                     <input type="text" class="form-control" id="name" th:field="*{name}" aria-describedby="emailHelp">
-
                 </div>
+
                 <div class="mb-3">
                     <label for="image" class="form-label" >Image</label>
                     <input type="text" class="form-control" id="image" th:field="*{image}">

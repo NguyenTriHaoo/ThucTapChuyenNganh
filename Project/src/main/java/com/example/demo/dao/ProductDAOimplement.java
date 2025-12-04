@@ -1,5 +1,6 @@
 package com.example.demo.dao;
 
+import com.example.demo.entity.Category;
 import com.example.demo.entity.Product;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -26,16 +27,18 @@ public class ProductDAOimplement implements ProductDAO{
 
     @Override
     public Product findById(int id) {
-        return null;
+        return em.find(Product.class,id);
     }
 
     @Override
     public Product save(Product product) {
-        return null;
+        Product saved = em.merge(product);
+        return saved;
     }
 
     @Override
     public void deleteById(int id) {
-
+        Product product = em.find(Product.class,id);
+        em.remove(product);
     }
 }

@@ -27,12 +27,7 @@ public class CategoryController {
         return "admin/Product-main/category-list";
     }
 
-    @GetMapping("/home")
-    public  String listShop(Model model){
-        List<Category> categories = categoryService.findAll();
-        model.addAttribute("categories",categories);
-        return "indexnhacungcap";
-    }
+
 
     @GetMapping("/admin/Product-main/category-list-create")
     public String categoryListCreate(Model model){
@@ -48,7 +43,7 @@ public class CategoryController {
         return "admin/Product-main/category-list-edit";
     }
 
-    @PostMapping("/admin/Product-main/save")
+    @PostMapping("/admin/Product-main/saveCategory")
     public String save(Category category){
         categoryService.save(category);
         return "redirect:/admin/Product-main/category"; //redirect: tra ve cai duong dan mapping

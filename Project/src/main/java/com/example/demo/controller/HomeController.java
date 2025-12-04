@@ -20,8 +20,8 @@ public class HomeController {
         return "home/shop-cart";
     }
 
-    @GetMapping("/")
-   public String indexnhacungcap(){
-    return "indexnhacungcap";
-   }
+//    @GetMapping("/")
+//   public String indexnhacungcap(){
+//    return "indexnhacungcap";
+//   }
 }

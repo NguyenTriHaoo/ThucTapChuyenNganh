@@ -10,7 +10,7 @@
 <div layout:fragment="main-content">
     <div style="margin-bottom:20px;">
         <button class="btn btn-success mr-2">
-            <a style="color:black;">Add</a>
+            <a style="color:black;" th:href="@{/admin/Product-main/product-list-create}">Add</a>
         </button>
     </div>
     <div class="container">
@@ -50,14 +50,15 @@
                         <span th:unless="${product.status == 1}" class="badge bg-secondary">Chưa bày bán</span>
                     </td>
                     <td>
-                        <a class="btn btn-primary btn-sm">Edit</a>
+                        <a th:href="@{/admin/Product-main/product-list-edit(id=${product.id})}"
+                           class="btn btn-primary btn-sm">Edit</a>
                         <form method="POST" style="display:inline-block;">
                             <input type="hidden" name="_method" value="DELETE" />
 
                             <button type="submit"
                                     class="btn btn-danger btn-sm"
                                     onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?')">
-                                Delete
+                                <a th:href="@{/admin/Product-main/deleteProduct(id=${product.id})}" style="color:black;">Delete</a>
                             </button>
                         </form>
                     </td>
