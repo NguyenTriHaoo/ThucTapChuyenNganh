@@ -1,6 +1,8 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,11 +21,18 @@ public class Category {
         private int status;
 
         //Moi quan he one-to-many
-        @OneToMany(mappedBy="category")
+        @OneToMany(mappedBy="category",cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
         private List<Product> products;
 
     public List<Product> getProducts() {
         return products;
+    }
+
+    public void add(Product tempProduct){
+        if(products==null)
+            products=new ArrayList<>();
+        products.add(tempProduct);
+        tempProduct.setCategory(this);
     }
 
     public void setProducts(List<Product> products) {

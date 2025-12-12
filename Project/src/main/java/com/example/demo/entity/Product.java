@@ -23,12 +23,11 @@ public class Product {
     @Column(name="price")
     private float price;
 
-
     @Column(name="status")
     private int status;
 
     //định nghĩa many-to-one
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
     @JoinColumn(name = "id_cate", nullable = false) //cột khóa ngoại
     private Category category;
 

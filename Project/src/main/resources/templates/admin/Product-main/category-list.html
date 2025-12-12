@@ -12,15 +12,25 @@
         <div class=" text-start rounded pt-4 pb-4">
             <div style="margin-bottom: 15px; width: 100%; justify-content: flex-start;">
                 <div>
-                    <button class="btn btn-success mr-2">
-                        <a th:href="@{/admin/Product-main/category-list-create}" style="color:black;">Add</a>
+                    <button style="
+                    background: linear-gradient(135deg, #28a745, #20c997);
+                    border: none;
+                    padding: 10px 24px;
+                    border-radius: 12px;
+                    cursor: pointer;
+                    transition: 0.25s ease;
+                    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 18px rgba(0,0,0,0.22)';"
+                            onmouseout="this.style.transform='none'; this.style.boxShadow='0 4px 10px rgba(0,0,0,0.15)';">
+                        <a th:href="@{/admin/Product-main/category-list-create}"
+                           style="color:white; font-weight:600; font-size:15px; text-decoration:none;">Add</a>
                     </button>
                 </div>
 
         <div class="container" style="width:1200px;">
             <div class="row" style="width:1200px;">
                 <table class="table table-bordered table-hover text-center align-middle mb-0" style="width: 100%;
-                 table-layout: fixed;border-collapse: collapse;border-color:black; margin-top:70px; ">
+                 table-layout: fixed;border-collapse: collapse;border-color:black; margin-top:20px; ">
                     <thead>
                     <tr >
                         <th scope="col" style="width: 4%;">ID</th>

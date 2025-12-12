@@ -8,15 +8,27 @@
 </head>
 <body>
 <div layout:fragment="main-content">
-    <div style="margin-bottom:20px;">
-        <button class="btn btn-success mr-2">
-            <a style="color:black;" th:href="@{/admin/Product-main/product-list-create}">Add</a>
+    <div class="container" style="margin-right:0px;">
+        <div class=" text-start rounded pt-4 pb-4">
+            <div style="margin-bottom: 15px; width: 100%; justify-content: flex-start;">
+        <button style="
+                    background: linear-gradient(135deg, #28a745, #20c997);
+                    border: none;
+                    padding: 10px 24px;
+                    border-radius: 12px;
+                    cursor: pointer;
+                    transition: 0.25s ease;
+                    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 18px rgba(0,0,0,0.22)';"
+                onmouseout="this.style.transform='none'; this.style.boxShadow='0 4px 10px rgba(0,0,0,0.15)';">
+            <a th:href="@{/admin/Product-main/product-list-create}"
+               style="color:white; font-weight:600; font-size:15px; text-decoration:none;">Add</a>
         </button>
     </div>
     <div class="container">
         <div class="row" style="width:1200px;">
             <table class="table table-bordered table-hover text-center align-middle mb-0" style="width: 100%;
-                 table-layout: fixed;border-collapse: collapse;border-color:black;">
+                 table-layout: fixed;border-collapse: collapse;border-color:black; margin-top:20px;">
                 <thead>
                 <tr>
                     <th scope="col" style="width: 3%;">ID</th>
@@ -68,7 +80,7 @@
             </table>
         </div>
     </div>
-</div>
+        </div>
 <!--    <div style="margin-bottom: 15px;  width: 100%; display: flex; justify-content: flex-start;">-->
 <!--        <button type="button" class="btn btn-default btn-app btn-xs" style="min-width: 60px;-->
 <!--        margin-top:80px;background-color:green;margin-left:280px;">-->
