@@ -107,13 +107,16 @@
                 <div class="menu-desktop">
                     <ul class="main-menu">
                         <li class="active-menu">
-                            <a th:href="@{/home}">Home</a>
+                            <a th:href="@{/}">Home</a>
                         </li>
-
-                        <li>
-                            <a th:href="@{/feature}">Product</a>
+                        <li> Menu
+                            <ul class="sub-menu">
+                                <li><a th:href="@{/home/homeCategory}">Danh mục</a></li>
+                                <li><a th:href="@{/home/homeProduct}">Sản phẩm</a></li>
+                            </ul>
                         </li>
                     </ul>
+
                 </div>
                 <!-- Icon header -->
                 <div class="wrap-icon-header flex-w flex-r-m">
@@ -215,7 +218,7 @@
             </li>
 
             <li>
-                <a href="product.html">Shop</a>
+                <a href="homeCategory.html">Shop</a>
             </li>
 
             <li>

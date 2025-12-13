@@ -29,4 +29,18 @@ public class ShopController {
         model.addAttribute("categories",categories);
         return "indexnhacungcap";
     }
+
+        @GetMapping("/home/homeCategory")
+    public String listCategory(Model model){
+        List<Category> categories = categoryService.findAll();
+        model.addAttribute("categories",categories);
+        return "home/homeCategory";
+    }
+
+    @GetMapping("/home/homeProduct")
+    public String listProduct(Model model){
+        List<Product> products = productService.findAll();
+        model.addAttribute("products",products);
+        return "home/homeProduct";
+    }
 }

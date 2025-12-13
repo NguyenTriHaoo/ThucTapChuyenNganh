@@ -10,10 +10,10 @@ public class HomeController {
 //        return "indexnhacungcap";
 //    }
 
-    @GetMapping("/feature")
-    public String feature(){
-        return "home/feature";
-    }
+//    @GetMapping("/feature")
+//    public String feature(){
+//        return "home/feature";
+//    }
 
     @GetMapping("/shopcart")
     public String shopcart(){
