@@ -8,4 +8,5 @@ public interface ProductDAO {
     Product findById(int id);
     Product save(Product product);
     void deleteById(int id);
+    List<Product> findByCategoryId(int cateId);
 }

@@ -1,23 +1,25 @@
 package com.example.demo.controller;
 
 import com.example.demo.dao.CategoryDAOimplement;
+import com.example.demo.dao.ProductDAO;
 import com.example.demo.entity.Category;
+import com.example.demo.entity.Product;
 import com.example.demo.service.CategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
 public class CategoryController {
+    private ProductDAO productDAO;
     private CategoryService categoryService;
-
-    public CategoryController(CategoryService categoryService) {
+    @Autowired
+    public CategoryController(CategoryService categoryService,ProductDAO productDAO) {
         this.categoryService = categoryService;
+        this.productDAO = productDAO;
     }
 
     @GetMapping("/admin/Product-main/category")
@@ -55,5 +57,14 @@ public class CategoryController {
         return "redirect:/admin/Product-main/category";
     }
 
+    @GetMapping("/category/{id}")
+    public String showProductByCategory(
+            @PathVariable int id,
+            Model model) {
 
+        List<Product> products = productDAO.findByCategoryId(id);
+        model.addAttribute("products", products);
+
+        return "home/homeProductByCate";
+    }
 }

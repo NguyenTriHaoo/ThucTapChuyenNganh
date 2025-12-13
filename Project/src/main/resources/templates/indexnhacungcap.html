@@ -134,7 +134,9 @@
                                     <img th:src="${product.image}" style="height: 200px; width:200px;">
                             </figure>
                             <h5 th:text="${product.title}"></h5>
-                            <div>[[${#numbers.formatDecimal(product.price, 0, 0)}]]đ</div>
+                            <div class="text-danger fw-bold">
+                                [[${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}]] đ
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -41,4 +41,16 @@ public class ProductDAOimplement implements ProductDAO{
         Product product = em.find(Product.class,id);
         em.remove(product);
     }
+
+    @Override
+    public List<Product> findByCategoryId(int cateId) {
+
+        TypedQuery<Product> query = em.createQuery(
+                "SELECT p FROM Product p WHERE p.category.id = :cateId",
+                Product.class
+        );
+        query.setParameter("cateId", cateId);
+
+        return query.getResultList();
+    }
 }

@@ -22,7 +22,6 @@ public class LoginFail implements AuthenticationFailureHandler {
             HttpServletResponse response,
             org.springframework.security.core.AuthenticationException exception
     ) throws IOException, ServletException {
-        System.out.println("LOGIN FAIL HANDLER CALLED");
         String username = request.getParameter("username");
 
         if (!userDetailsManager.userExists(username)) {
