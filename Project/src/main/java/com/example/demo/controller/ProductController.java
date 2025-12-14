@@ -60,4 +60,12 @@ public class ProductController {
         productService.deleteById(id);
         return "redirect:/admin/Product-main/product";
     }
+
+    @GetMapping("/product/{id}")
+    public String productDetail(@PathVariable int id, Model model) {
+        Product product = productService.findById(id);
+
+        model.addAttribute("product", product);
+        return "home/homeProductDetail";
+    }
 }
