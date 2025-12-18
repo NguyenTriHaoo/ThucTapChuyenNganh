@@ -4,21 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AdminController {
-//    @GetMapping("/")
-//    public String index(){
-//        return "indexnhacungcap";
-//    }
-
-//    @GetMapping("/admin/Product-main/category")
-//    public String categoryList(){
-    //        return "admin/Product-main/category-list";
-//    }
-
-//    @GetMapping("/admin/Product-main/product")
-//    public String productList(){
-//        return "admin/Product-main/product-list";
-//    }
-
     @GetMapping("/admin")
     public String productList(){
        return "index";

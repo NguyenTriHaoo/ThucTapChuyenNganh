@@ -44,7 +44,6 @@ public class ProductDAOimplement implements ProductDAO{
 
     @Override
     public List<Product> findByCategoryId(int cateId) {
-
         TypedQuery<Product> query = em.createQuery(
                 "SELECT p FROM Product p WHERE p.category.id = :cateId",
                 Product.class

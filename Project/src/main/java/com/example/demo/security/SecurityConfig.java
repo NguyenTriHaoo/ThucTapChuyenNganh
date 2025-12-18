@@ -29,11 +29,17 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http,
-                                    UserDetailsManager userDetailsManager) throws Exception {
+                                    UserDetailsManager userDetailsManager,
+                                    CustomOAuth2UserService customOAuth2UserService) throws Exception {
+
+        boolean enableGoogle = System.getenv("GOOGLE_CLIENT_ID") != null &&
+                                System.getenv("GOOGLE_CLIENT_SECRET") != null;
 
         http.authorizeHttpRequests(configurer ->
                         configurer.requestMatchers(
+                                "/",
                                         "/login",
+                                        "/oauth2/**",
                                         "/css/**",
                                         "/js/**",
                                         "/images/**",
@@ -50,8 +56,17 @@ public class SecurityConfig {
                         form
                                 .loginPage("/login")
                                 .loginProcessingUrl("/authenticateTheUser")
+                                .failureUrl("/login?error=true")
                                 .failureHandler(new LoginFail(userDetailsManager))
                                 .permitAll()
+                )
+                .oauth2Login(oauth2 ->
+                        oauth2
+                                .loginPage("/login")
+                                .userInfoEndpoint(userInfo ->
+                                        userInfo.userService(customOAuth2UserService)
+                                )
+                                .defaultSuccessUrl("/", true)
                 )
                 .logout(logout -> logout.permitAll());
 

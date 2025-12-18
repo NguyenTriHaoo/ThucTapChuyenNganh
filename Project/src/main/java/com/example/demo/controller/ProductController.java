@@ -31,19 +31,16 @@ public class ProductController {
     @GetMapping("/admin/Product-main/product-list-create")
     public String productListCreate(Model model){
         Product product = new Product();
-
 //        Tao category gan vao form product
         product.setCategory(new Category());
         List<Category> categories = categoryService.findAll();
         model.addAttribute("categories", categories);
-
         model.addAttribute("product", product);
         return "admin/Product-main/product-list-create";
     }
 
     @GetMapping("/admin/Product-main/product-list-edit")
     public String categoryListEdit(@RequestParam("id") int id,Model model){
-
         Product product = productService.findById(id);
         model.addAttribute("product",product);
         return "admin/Product-main/product-list-edit";
@@ -64,7 +61,6 @@ public class ProductController {
     @GetMapping("/product/{id}")
     public String productDetail(@PathVariable int id, Model model) {
         Product product = productService.findById(id);
-
         model.addAttribute("product", product);
         return "home/homeProductDetail";
     }
