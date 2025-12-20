@@ -40,12 +40,15 @@ public class SecurityConfig {
                                 "/",
                                         "/login",
                                         "/oauth2/**",
+                                        "/error",
                                         "/css/**",
                                         "/js/**",
                                         "/images/**",
                                         "/fonts/**",
                                         "/favicon.ico",
                                         "/json/**",
+                                        "/indexnhacungcap",
+                                        "/cssProduct-Cate-Shop/**",
                                         "/vendor/**"
                                 ).permitAll()
                                 .requestMatchers("/admin/**").hasRole("MANAGER")
@@ -56,7 +59,6 @@ public class SecurityConfig {
                         form
                                 .loginPage("/login")
                                 .loginProcessingUrl("/authenticateTheUser")
-                                .failureUrl("/login?error=true")
                                 .failureHandler(new LoginFail(userDetailsManager))
                                 .permitAll()
                 )
@@ -68,7 +70,14 @@ public class SecurityConfig {
                                 )
                                 .defaultSuccessUrl("/", true)
                 )
-                .logout(logout -> logout.permitAll());
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/")
+                        .invalidateHttpSession(true)
+                        .clearAuthentication(true)
+                        .deleteCookies("JSESSIONID")
+                        .permitAll()
+                );
 
         return http.build();
     }
