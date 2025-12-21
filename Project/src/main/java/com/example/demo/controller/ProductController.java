@@ -40,14 +40,37 @@ public class ProductController {
     }
 
     @GetMapping("/admin/Product-main/product-list-edit")
-    public String categoryListEdit(@RequestParam("id") int id,Model model){
+    public String productListEdit(@RequestParam("id") int id, Model model) {
         Product product = productService.findById(id);
-        model.addAttribute("product",product);
+        List<Category> categories = categoryService.findAll();
+        model.addAttribute("product", product);
+        model.addAttribute("categories", categories);
         return "admin/Product-main/product-list-edit";
     }
 
     @PostMapping("/admin/Product-main/saveProduct")
-    public String saveProduct(Product product){
+    public String saveProduct(@ModelAttribute Product formProduct) {
+        Product product;
+        if (formProduct.getId() > 0) {
+            product = productService.findById(formProduct.getId());
+            if (product == null) {
+                throw new RuntimeException("Product not found with id=" + formProduct.getId());
+            }
+        }
+        else {
+            product = new Product();
+        }
+        product.setTitle(formProduct.getTitle());
+        product.setImage(formProduct.getImage());
+        product.setDescription(formProduct.getDescription());
+        product.setContent(formProduct.getContent());
+        product.setPrice(formProduct.getPrice());
+        product.setStatus(formProduct.getStatus());
+        if (formProduct.getCategory() != null && formProduct.getCategory().getId() != 0) {
+            Category category =
+                    categoryService.findById(formProduct.getCategory().getId());
+            product.setCategory(category);
+        }
         productService.save(product);
         return "redirect:/admin/Product-main/product";
     }
