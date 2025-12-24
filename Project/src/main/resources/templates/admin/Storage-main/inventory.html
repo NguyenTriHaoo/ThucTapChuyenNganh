@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="https://www.ultraq.net/thymeleaf/layout"
+      layout:decorate="~{admin/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="main-content">
+    <div class="container">
+        <h3>Danh sách tồn kho</h3>
+
+        <table class="table table-bordered table-hover text-center align-middle">
+            <thead>
+            <tr>
+                <th>Sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Trạng thái</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="inv : ${inventories}">
+                <td th:text="${inv.product.title}"></td>
+                <td th:text="${inv.quantity}"></td>
+                <td>
+                    <span th:if="${inv.quantity <= inv.warningLevel}" class="badge bg-danger">Sắp hết hàng</span>
+                    <span th:if="${inv.quantity > inv.warningLevel}" class="badge bg-success">Bình thường</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

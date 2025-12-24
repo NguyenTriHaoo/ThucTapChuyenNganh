@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="https://www.ultraq.net/thymeleaf/layout"
+      layout:decorate="~{admin/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách phiếu nhập kho</title>
+</head>
+<body>
+<div layout:fragment="main-content">
+    <div class="container mt-4">
+        <h3>Danh sách phiếu nhập kho</h3>
+        <a th:href="@{/admin/Storage-main/import-receipt-list-create}" class="btn btn-success mb-3">Tạo phiếu nhập</a>
+
+        <table class="table table-bordered table-hover text-center align-middle">
+            <thead class="table-light">
+            <tr>
+                <th>ID</th>
+                <th>Ngày nhập</th>
+                <th>Nhà cung cấp</th>
+                <th>Trạng thái</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="r : ${receipts}">
+                <td th:text="${r.id}"></td>
+                <td th:text="${r.importDateStr}"></td> <!-- dùng getter mới -->
+                <td th:text="${r.supplier}"></td>
+                <td>
+                    <span th:if="${r.status == 0}" class="badge bg-warning">Chờ duyệt</span>
+                    <span th:if="${r.status == 1}" class="badge bg-success">Đã nhập</span>
+                </td>
+                <td>
+                    <a th:if="${r.status == 0}"
+                       th:href="@{/admin/Storage-main/import-receipt-list-approve/{id}(id=${r.id})}"
+                       class="btn btn-primary btn-sm">Duyệt</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

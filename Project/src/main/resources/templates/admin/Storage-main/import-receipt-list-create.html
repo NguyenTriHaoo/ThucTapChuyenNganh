@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="https://www.ultraq.net/thymeleaf/layout"
+      layout:decorate="~{admin/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Tạo phiếu nhập kho</title>
+</head>
+<body>
+<div layout:fragment="main-content">
+    <div class="container mt-4">
+        <h3>Tạo phiếu nhập kho</h3>
+        <form th:action="@{/admin/Storage-main/import-receipt-list-save}" method="post">
+
+            <!-- Nhà cung cấp -->
+            <div class="mb-3">
+                <label>Nhà cung cấp:</label>
+                <input type="text" name="supplier" class="form-control" required>
+            </div>
+
+            <!-- Bảng sản phẩm -->
+            <h5>Sản phẩm</h5>
+            <table class="table table-bordered" id="productsTable">
+                <thead>
+                <tr>
+                    <th>Sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Đơn giá</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <select name="productId[]" class="form-select">
+                            <option th:each="p : ${products}" th:value="${p.id}" th:text="${p.title}"></option>
+                        </select>
+                    </td>
+                    <td><input type="number" name="quantity[]" class="form-control" min="1" value="1"></td>
+                    <td><input type="number" name="price[]" class="form-control" step="0.01" value="0"></td>
+                    <td><button type="button" class="btn btn-danger" onclick="removeRow(this)">Xóa</button></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <!-- Thêm sản phẩm -->
+            <button type="button" class="btn btn-secondary mb-3" onclick="addRow()">Thêm sản phẩm</button>
+            <br/>
+
+            <!-- Nút lưu -->
+            <button type="submit" class="btn btn-primary">Lưu phiếu nhập</button>
+        </form>
+    </div>
+
+    <script>
+        function addRow() {
+            const tableBody = document.querySelector("#productsTable tbody");
+            const firstRow = tableBody.querySelector("tr");
+            const newRow = firstRow.cloneNode(true);
+
+            // Reset các input
+            newRow.querySelectorAll('input').forEach(input => {
+                if(input.type === 'number') input.value = input.name === 'quantity[]' ? 1 : 0;
+            });
+
+            // Reset select về giá trị đầu tiên
+            const select = newRow.querySelector('select');
+            select.selectedIndex = 0;
+
+            // Gán nút xóa
+            newRow.querySelector(".btn-danger").onclick = function() { removeRow(this); };
+
+            tableBody.appendChild(newRow);
+        }
+
+        function removeRow(button) {
+            const tableBody = document.querySelector("#productsTable tbody");
+            if (tableBody.querySelectorAll("tr").length > 1) {
+                button.closest('tr').remove();
+            } else {
+                alert("Phải có ít nhất một sản phẩm trong phiếu nhập!");
+            }
+        }
+    </script>
+</div>
+
+<!-- Script JS -->
+
+</body>
+
+
+</html>
