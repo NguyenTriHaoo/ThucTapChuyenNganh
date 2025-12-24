@@ -1,40 +1,103 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="https://www.ultraq.net/thymeleaf/layout"
       layout:decorate="~{admin/layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Category Form</title>
 </head>
+
 <body>
 <div layout:fragment="main-content">
-    <div class="container">
-        <div class="row">
-            <form th:action="@{/admin/Product-main/saveCategory}" method="post" th:object="${category}">
 
-                <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="name" th:field="*{name}" aria-describedby="emailHelp">
+    <div class="container-fluid">
+
+        <!-- Title -->
+        <div style="margin-bottom:24px;">
+            <h4 style="font-weight:700;color:#2c3e50;">Category Form</h4>
+            <p style="color:#6c757d;margin:0;">Thêm danh mục</p>
+        </div>
+
+        <!-- Card -->
+        <div class="m-auto" style="
+            background:#ffffff;
+            padding:30px;
+            border-radius:16px;
+            max-width:700px;
+            box-shadow:0 10px 28px rgba(0,0,0,0.08);
+        ">
+
+            <form th:action="@{/admin/Product-main/saveCategory}"
+                  method="post"
+                  th:object="${category}">
+
+                <div class="row g-4">
+
+                    <!-- Name -->
+                    <div class="col-md-12">
+                        <label class="form-label fw-semibold">Tên danh mục</label>
+                        <input type="text"
+                               class="form-control"
+                               th:field="*{name}"
+                               placeholder="Nhập tên danh mục"
+                               style="border-radius:12px;padding:10px 14px;">
+                    </div>
+
+                    <!-- Image -->
+                    <div class="col-md-12">
+                        <label class="form-label fw-semibold">Image URL</label>
+                        <input type="text"
+                               class="form-control"
+                               th:field="*{image}"
+                               placeholder="https://example.com/image.jpg"
+                               style="border-radius:12px;padding:10px 14px;">
+                    </div>
+
+                    <!-- Status -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Trạng thái</label>
+                        <select class="form-control"
+                                th:field="*{status}"
+                                style="border-radius:12px;padding:10px 14px;">
+                            <option value="1">Đang bày bán</option>
+                            <option value="0">Đã bày bán</option>
+                        </select>
+                    </div>
+
                 </div>
 
-                <div class="mb-3">
-                    <label for="image" class="form-label" >Image</label>
-                    <input type="text" class="form-control" id="image" th:field="*{image}">
-                </div>
-                <div class="mb-3">
-                    <label for="status" class="form-label" >Status</label>
-                    <select th:field="*{status}" class="form-control" id="status">
-                        <option value="1">On</option>
-                        <option value="0">Off</option>
-                    </select>
+                <!-- Buttons -->
+                <div style="margin-top:30px;display:flex;gap:14px;align-items:center;">
+                    <button type="submit"
+                            style="
+                                background:linear-gradient(135deg,#43cea2,#185a9d);
+                                border:none;
+                                color:#fff;
+                                padding:10px 30px;
+                                border-radius:30px;
+                                font-weight:600;
+                                box-shadow:0 6px 18px rgba(67,206,162,.35);
+                            ">
+                        Lưu danh mục
+                    </button>
+
+                    <a th:href="@{/admin/Product-main/category}"
+                       style="
+                           text-decoration:none;
+                           display:inline-flex;
+                           align-items:center;
+                           gap:8px;
+                           padding:10px 26px;
+                           border-radius:30px;
+                           background:#f1f3f5;
+                           color:#333;
+                           font-weight:600;
+                       ">
+                        ⬅ Quay lại
+                    </a>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Create</button>
-                <a th:href="@{/admin/category/category-list}" class="btn btn-secondary">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5"/>
-                    </svg>
-                    Back</a>
             </form>
         </div>
     </div>

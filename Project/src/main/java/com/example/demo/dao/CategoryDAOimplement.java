@@ -42,4 +42,12 @@ public class CategoryDAOimplement implements CategoryDAO{
         Category category = em.find(Category.class,id);
         em.remove(category);
     }
+
+    @Override
+    public long countAll() {
+        TypedQuery<Long> query = em.createQuery(
+                "SELECT COUNT(c) FROM Category c", Long.class
+        );
+        return query.getSingleResult();
+    }
 }

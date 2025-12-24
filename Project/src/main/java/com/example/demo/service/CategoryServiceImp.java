@@ -36,4 +36,7 @@ public class CategoryServiceImp implements CategoryService{
     public void deleteById(int id) {
         categoryDAO.deleteById(id);
     }
+    public long countAll() {
+        return categoryDAO.countAll();
+    }
 }

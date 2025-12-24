@@ -36,4 +36,15 @@ public class ProductServiceImp implements ProductService{
     public void deleteById(int id) {
         productDAO.deleteById(id);
     }
+    public long countAll() {
+        return productDAO.countAll();
+    }
+
+    public long countActive() {
+        return productDAO.countActive();
+    }
+
+    public long countInactive() {
+        return productDAO.countInactive();
+    }
 }

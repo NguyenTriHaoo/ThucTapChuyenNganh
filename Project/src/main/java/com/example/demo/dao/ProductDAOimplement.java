@@ -52,4 +52,28 @@ public class ProductDAOimplement implements ProductDAO{
 
         return query.getResultList();
     }
+
+    @Override
+    public long countAll() {
+        TypedQuery<Long> query = em.createQuery(
+                "SELECT COUNT(p) FROM Product p", Long.class
+        );
+        return query.getSingleResult();
+    }
+
+    @Override
+    public long countActive() {
+        TypedQuery<Long> query = em.createQuery(
+                "SELECT COUNT(p) FROM Product p WHERE p.status = 1", Long.class
+        );
+        return query.getSingleResult();
+    }
+
+    @Override
+    public long countInactive() {
+        TypedQuery<Long> query = em.createQuery(
+                "SELECT COUNT(p) FROM Product p WHERE p.status = 0", Long.class
+        );
+        return query.getSingleResult();
+    }
 }

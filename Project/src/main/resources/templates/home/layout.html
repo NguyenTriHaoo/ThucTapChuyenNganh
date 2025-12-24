@@ -118,22 +118,43 @@
             <div class="menu-desktop">
                 <ul class="main-menu">
                     <li class="active-menu">
-                        <a th:href="@{/}" style="padding: 8px 16px;border-radius: 20px;
-                        background: linear-gradient(135deg, #667eea, #764ba2);color: #fff;
-                        font-weight: 600;transition: all 0.3s;" onmouseover="this.style.opacity='0.85'"
+                        <a th:href="@{/}"
+                           style="padding:8px 16px;border-radius:20px;
+                  background:linear-gradient(135deg,#667eea,#764ba2);
+                  color:#fff;font-weight:600;transition:all .3s;"
+                           onmouseover="this.style.opacity='0.85'"
                            onmouseout="this.style.opacity='1'">
                             Home
                         </a>
                     </li>
-                    <li style="list-style: none;padding: 8px 16px;font-weight: 600;font-size: 15px;color: #333;
-                    cursor: pointer;position: relative;transition: color .25s;"
-                            onmouseover="this.style.color='#007bff'"
-                            onmouseout="this.style.color='#333'">
+
+                    <li style="list-style:none;padding:8px 16px;font-weight:600;
+               font-size:15px;color:#333;cursor:pointer;position:relative;
+               transition:color .25s;"
+                        onmouseover="this.style.color='#2563EB'"
+                        onmouseout="this.style.color='#333'">
                         Menu
                         <ul class="sub-menu">
                             <li><a th:href="@{/home/homeCategory}">Danh mục</a></li>
                             <li><a th:href="@{/home/homeProduct}">Sản phẩm</a></li>
                         </ul>
+                    </li>
+
+                    <!-- ADMIN -->
+                    <li sec:authorize="hasRole('ADMIN')">
+                        <a th:href="@{/admin}"
+                           style="
+             padding:8px 16px;
+             border-radius:20px;
+             background:#0F172A;
+             color:#fff;
+             font-weight:600;
+             transition:.3s;
+           "
+                           onmouseover="this.style.background='#2563EB'"
+                           onmouseout="this.style.background='#0F172A'">
+                            <i class="fa fa-cog me-1"></i> Admin
+                        </a>
                     </li>
                 </ul>
 

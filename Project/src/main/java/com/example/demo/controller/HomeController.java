@@ -10,5 +10,8 @@ public class HomeController {
     public String shopcart(){
         return "home/shop-cart";
     }
-
+    @GetMapping("/home/about")
+    public String aboutShop(){
+        return "home/about";
+    }
 }

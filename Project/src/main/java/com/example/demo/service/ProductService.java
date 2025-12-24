@@ -10,4 +10,7 @@ public interface ProductService {
     Product findById(int id);
     Product save(Product product);
     void deleteById(int id);
+    long countAll();
+    long countActive();
+    long countInactive();
 }

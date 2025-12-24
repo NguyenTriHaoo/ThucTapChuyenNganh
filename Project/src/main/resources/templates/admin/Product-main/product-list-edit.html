@@ -1,40 +1,136 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="https://www.ultraq.net/thymeleaf/layout"
       layout:decorate="~{admin/layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Product Form</title>
 </head>
+
 <body>
 <div layout:fragment="main-content">
-    <form th:action="@{/admin/Product-main/saveProduct}" method="post" th:object="${product}">
-        <input type="hidden" th:field="*{id}">
-        <input type="hidden" th:field="*{category.id}">
 
-        <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" th:field="*{title}">
-            <label for="image" class="form-label">Image</label>
-            <input type="text" class="form-control" id="image" th:field="*{image}">
+    <div class="container-fluid">
 
-            <label for="description" class="form-label">Description</label>
-            <input type="text" class="form-control" id="description" th:field="*{description}">
-
-            <label for="content" class="form-label">Content</label>
-            <input type="text" class="form-control" id="content" th:field="*{content}">
-
-            <label for="price" class="form-label">price</label>
-            <input type="number" class="form-control" id="price" th:field="*{price}">
-
-            <label for="status" class="form-label">Status</label>
-            <select th:field="*{status}" class="form-control" id="status">
-                <option value="1">On</option>
-                <option value="0">Off</option>
-            </select>
+        <!-- Title -->
+        <div style="margin-bottom:24px;">
+            <h4 style="font-weight:700;color:#2c3e50;">Product Form</h4>
+            <p style="color:#6c757d;margin:0;">Sửa sản phẩm</p>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+
+        <!-- Card -->
+        <div style="
+            background:#ffffff;
+            padding:30px;
+            border-radius:16px;
+            box-shadow:0 10px 28px rgba(0,0,0,0.08);
+        ">
+
+            <form th:action="@{/admin/Product-main/saveProduct}"
+                  method="post"
+                  th:object="${product}">
+
+                <!-- Hidden -->
+                <input type="hidden" th:field="*{id}">
+                <input type="hidden" th:field="*{category.id}">
+
+                <div class="row g-4">
+
+                    <!-- Name -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Tên sản phẩm</label>
+                        <input type="text"
+                               class="form-control"
+                               th:field="*{title}"
+                               placeholder="Nhập tên sản phẩm"
+                               style="border-radius:12px;padding:10px 14px;">
+                    </div>
+
+                    <!-- Price -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Giá</label>
+                        <input type="number"
+                               class="form-control"
+                               th:field="*{price}"
+                               placeholder="VNĐ"
+                               style="border-radius:12px;padding:10px 14px;">
+                    </div>
+
+                    <!-- Image -->
+                    <div class="col-md-12">
+                        <label class="form-label fw-semibold">Image URL</label>
+                        <input type="text"
+                               class="form-control"
+                               th:field="*{image}"
+                               placeholder="https://example.com/image.jpg"
+                               style="border-radius:12px;padding:10px 14px;">
+                    </div>
+
+                    <!-- Description -->
+                    <div class="col-md-12">
+                        <label class="form-label fw-semibold">Description</label>
+                        <input type="text"
+                               class="form-control"
+                               th:field="*{description}"
+                               placeholder="Mô tả ngắn"
+                               style="border-radius:12px;padding:10px 14px;">
+                    </div>
+
+                    <!-- Content -->
+                    <div class="col-md-12">
+                        <label class="form-label fw-semibold">Content</label>
+                        <textarea class="form-control"
+                                  th:field="*{content}"
+                                  rows="4"
+                                  placeholder="Nội dung chi tiết"
+                                  style="border-radius:12px;padding:12px 14px;"></textarea>
+                    </div>
+
+                    <!-- Status -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Status</label>
+                        <select class="form-control"
+                                th:field="*{status}"
+                                style="border-radius:12px;padding:10px 14px;">
+                            <option value="1">Đang bày bán</option>
+                            <option value="0">Chưa bày bán</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <!-- Buttons -->
+                <div style="margin-top:30px;display:flex;gap:14px;">
+                    <button type="submit"
+                            style="
+                                background:linear-gradient(135deg,#667eea,#764ba2);
+                                border:none;
+                                color:#fff;
+                                padding:10px 30px;
+                                border-radius:30px;
+                                font-weight:600;
+                                box-shadow:0 6px 18px rgba(102,126,234,.35);
+                            ">
+                        Lưu chỉnh sửa
+                    </button>
+
+                    <a th:href="@{/admin/Product-main/product}"
+                       style="
+                           text-decoration:none;
+                           padding:10px 26px;
+                           border-radius:30px;
+                           background:#f1f3f5;
+                           color:#333;
+                           font-weight:600;
+                       ">
+                        ⬅ Quay lại
+                    </a>
+                </div>
+
+            </form>
+        </div>
+    </div>
 </div>
 </body>
 </html>

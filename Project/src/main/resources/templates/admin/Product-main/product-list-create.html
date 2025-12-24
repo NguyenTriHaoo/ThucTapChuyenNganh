@@ -1,74 +1,128 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="https://www.ultraq.net/thymeleaf/layout"
       layout:decorate="~{admin/layout}">
 <head>
     <meta charset="UTF-8">
     <title>Create Product</title>
 </head>
+
 <body>
 <div layout:fragment="main-content">
-    <div class="container">
-        <div class="row">
+    <div class="container-fluid">
+        <div style="margin-bottom:25px;">
+            <h4 style="font-weight:700;color:#2c3e50;">Thêm sản phẩm</h4>
+            <p style="color:#6c757d;margin:0;">Nhập thông tin chi tiết sản phẩm</p>
+        </div>
+
+        <div style="
+            background:#fff;
+            border-radius:16px;
+            padding:30px;
+            box-shadow:0 8px 25px rgba(0,0,0,0.08);
+        ">
 
             <form th:action="@{/admin/Product-main/saveProduct}"
                   method="post"
                   th:object="${product}">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Tên sản phẩm</label>
+                        <input type="text"
+                               class="form-control"
+                               th:field="*{title}"
+                               placeholder="Nhập tên sản phẩm"
+                               style="border-radius:12px;padding:10px 14px;">
+                    </div>
 
-                <div class="mb-3">
-                    <label for="title" class="form-label">Title</label>
-                    <input type="text" class="form-control"
-                           id="title" th:field="*{title}">
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Danh mục</label>
+                        <select class="form-control"
+                                th:field="*{category.id}"
+                                style="border-radius:12px;padding:10px 14px;">
+                            <option th:each="category : ${categories}"
+                                    th:value="${category.id}"
+                                    th:text="${category.name}">
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label class="form-label fw-semibold">Ảnh sản phẩm (URL)</label>
+                        <input type="text"
+                               class="form-control"
+                               th:field="*{image}"
+                               placeholder="https://example.com/image.jpg"
+                               style="border-radius:12px;padding:10px 14px;">
+                    </div>
+
+                    <div class="col-md-12">
+                        <label class="form-label fw-semibold">Mô tả ngắn</label>
+                        <input type="text"
+                               class="form-control"
+                               th:field="*{description}"
+                               placeholder="Mô tả ngắn gọn"
+                               style="border-radius:12px;padding:10px 14px;">
+                    </div>
+
+                    <div class="col-md-12">
+                        <label class="form-label fw-semibold">Nội dung chi tiết</label>
+                        <textarea class="form-control"
+                                  th:field="*{content}"
+                                  rows="4"
+                                  placeholder="Mô tả chi tiết sản phẩm"
+                                  style="border-radius:12px;padding:12px 14px;"></textarea>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Giá</label>
+                        <input type="number"
+                               class="form-control"
+                               th:field="*{price}"
+                               placeholder="VNĐ"
+                               style="border-radius:12px;padding:10px 14px;">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Trạng thái</label>
+                        <select class="form-control"
+                                th:field="*{status}"
+                                style="border-radius:12px;padding:10px 14px;">
+                            <option value="1">Đang bày bán</option>
+                            <option value="0">Ngừng bán</option>
+                        </select>
+                    </div>
+
                 </div>
 
-                <!-- category -->
-                <div class="mb-3">
-                    <label for="category" class="form-label">Category</label>
-                    <select class="form-control" id="category"
-                            th:field="*{category.id}">
+                <div style="margin-top:30px;display:flex;gap:15px;">
+                    <button type="submit"
+                            style="
+                                background:linear-gradient(135deg,#667eea,#764ba2);
+                                border:none;
+                                color:#fff;
+                                padding:10px 28px;
+                                border-radius:30px;
+                                font-weight:600;
+                                box-shadow:0 6px 18px rgba(102,126,234,.35);
+                            ">
+                        Lưu sản phẩm
+                    </button>
 
-                        <option th:each="category : ${categories}"
-                                th:value="${category.id}"
-                                th:text="${category.name}">
-                        </option>
-                    </select>
+                    <a th:href="@{/admin/Product-main/product}"
+                       style="
+                           text-decoration:none;
+                           padding:10px 26px;
+                           border-radius:30px;
+                           background:#f1f3f5;
+                           color:#333;
+                           font-weight:600;
+                       ">
+                        ⬅ Quay lại
+                    </a>
                 </div>
-
-                <div class="mb-3">
-                    <label for="image" class="form-label">Image</label>
-                    <input type="text" class="form-control"
-                           id="image" th:field="*{image}">
-                </div>
-
-                <div class="mb-3">
-                    <label for="description" class="form-label">Description</label>
-                    <input type="text" class="form-control"
-                           id="description" th:field="*{description}">
-                </div>
-
-                <div class="mb-3">
-                    <label for="content" class="form-label">Content</label>
-                    <input type="text" class="form-control"
-                           id="content" th:field="*{content}">
-                </div>
-
-                <div class="mb-3">
-                    <label for="price" class="form-label">Price</label>
-                    <input type="number" class="form-control"
-                           id="price" th:field="*{price}">
-                </div>
-
-                <div class="mb-3">
-                    <label for="status" class="form-label">Status</label>
-                    <select class="form-control" id="status" th:field="*{status}">
-                        <option value="1">On</option>
-                        <option value="0">Off</option>
-                    </select>
-                </div>
-
-                <button type="submit" class="btn btn-primary">Create</button>
             </form>
-
         </div>
     </div>
 </div>

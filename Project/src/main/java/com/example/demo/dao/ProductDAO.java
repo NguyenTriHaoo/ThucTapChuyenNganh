@@ -9,4 +9,9 @@ public interface ProductDAO {
     Product save(Product product);
     void deleteById(int id);
     List<Product> findByCategoryId(int cateId);
+    long countAll();
+
+    long countActive();
+
+    long countInactive();
 }
