@@ -90,12 +90,10 @@ public class ProductController {
 
     @GetMapping("/admin")
     public String dashboard(Model model) {
-
         model.addAttribute("totalProducts", productService.countAll());
         model.addAttribute("activeProducts", productService.countActive());
         model.addAttribute("inactiveProducts", productService.countInactive());
         model.addAttribute("totalCategories", categoryService.countAll());
-
         return "index";
     }
 }

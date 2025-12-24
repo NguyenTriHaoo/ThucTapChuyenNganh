@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="https://www.ultraq.net/thymeleaf/layout"
+      layout:decorate="~{admin/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Chi tiet phieu nhap kho</title>
+</head>
+<body>
+<div layout:fragment="main-content">
+    <table class="table table-bordered text-center">
+        <thead>
+        <tr>
+            <th>STT</th>
+            <th>Sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Giá</th>
+            <th>Thành tiền</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="d, iterStat : ${details}">
+            <td th:text="${iterStat.count}"></td>
+            <td th:text="${d.product.title}"></td>
+            <td th:text="${d.quantity}"></td>
+            <td th:text="${d.price}"></td>
+            <td th:text="${d.quantity * d.price}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -44,36 +44,26 @@ public class ProductDAOimplement implements ProductDAO{
 
     @Override
     public List<Product> findByCategoryId(int cateId) {
-        TypedQuery<Product> query = em.createQuery(
-                "SELECT p FROM Product p WHERE p.category.id = :cateId",
-                Product.class
-        );
+        TypedQuery<Product> query = em.createQuery("SELECT p FROM Product p WHERE p.category.id = :cateId", Product.class);
         query.setParameter("cateId", cateId);
-
         return query.getResultList();
     }
 
     @Override
     public long countAll() {
-        TypedQuery<Long> query = em.createQuery(
-                "SELECT COUNT(p) FROM Product p", Long.class
-        );
+        TypedQuery<Long> query = em.createQuery("SELECT COUNT(p) FROM Product p", Long.class);
         return query.getSingleResult();
     }
 
     @Override
     public long countActive() {
-        TypedQuery<Long> query = em.createQuery(
-                "SELECT COUNT(p) FROM Product p WHERE p.status = 1", Long.class
-        );
+        TypedQuery<Long> query = em.createQuery("SELECT COUNT(p) FROM Product p WHERE p.status = 1", Long.class);
         return query.getSingleResult();
     }
 
     @Override
     public long countInactive() {
-        TypedQuery<Long> query = em.createQuery(
-                "SELECT COUNT(p) FROM Product p WHERE p.status = 0", Long.class
-        );
+        TypedQuery<Long> query = em.createQuery("SELECT COUNT(p) FROM Product p WHERE p.status = 0", Long.class);
         return query.getSingleResult();
     }
 }

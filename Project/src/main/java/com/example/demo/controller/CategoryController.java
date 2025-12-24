@@ -29,8 +29,6 @@ public class CategoryController {
         return "admin/Product-main/category-list";
     }
 
-
-
     @GetMapping("/admin/Product-main/category-list-create")
     public String categoryListCreate(Model model){
         Category category = new Category();
@@ -58,13 +56,9 @@ public class CategoryController {
     }
 
     @GetMapping("/category/{id}")
-    public String showProductByCategory(
-            @PathVariable int id,
-            Model model) {
-
+    public String showProductByCategory(@PathVariable int id, Model model) {
         List<Product> products = productDAO.findByCategoryId(id);
         model.addAttribute("products", products);
-
         return "home/homeProductByCate";
     }
 }

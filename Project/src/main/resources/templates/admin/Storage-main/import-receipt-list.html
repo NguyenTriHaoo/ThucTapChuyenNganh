@@ -35,6 +35,8 @@
                     <a th:if="${r.status == 0}"
                        th:href="@{/admin/Storage-main/import-receipt-list-approve/{id}(id=${r.id})}"
                        class="btn btn-primary btn-sm">Duyệt</a>
+
+                    <a th:href="@{/admin/Storage-main/import-receipt-list-detail/{id}(id=${r.id})}">Chi tiet</a>
                 </td>
             </tr>
             </tbody>

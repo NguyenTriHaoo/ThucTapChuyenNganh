@@ -10,8 +10,6 @@ public interface ProductDAO {
     void deleteById(int id);
     List<Product> findByCategoryId(int cateId);
     long countAll();
-
     long countActive();
-
     long countInactive();
 }

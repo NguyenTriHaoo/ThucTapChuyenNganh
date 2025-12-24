@@ -6,5 +6,4 @@ public interface AppDAO {
     void save(Category theCategory);
     Category findCategoryById(int theId);
     void deleteCategoryById(int theID);
-
 }

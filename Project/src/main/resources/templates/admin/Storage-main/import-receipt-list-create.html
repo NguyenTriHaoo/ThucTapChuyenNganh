@@ -11,14 +11,11 @@
     <div class="container mt-4">
         <h3>Tạo phiếu nhập kho</h3>
         <form th:action="@{/admin/Storage-main/import-receipt-list-save}" method="post">
-
-            <!-- Nhà cung cấp -->
             <div class="mb-3">
                 <label>Nhà cung cấp:</label>
                 <input type="text" name="supplier" class="form-control" required>
             </div>
 
-            <!-- Bảng sản phẩm -->
             <h5>Sản phẩm</h5>
             <table class="table table-bordered" id="productsTable">
                 <thead>
@@ -42,12 +39,8 @@
                 </tr>
                 </tbody>
             </table>
-
-            <!-- Thêm sản phẩm -->
             <button type="button" class="btn btn-secondary mb-3" onclick="addRow()">Thêm sản phẩm</button>
             <br/>
-
-            <!-- Nút lưu -->
             <button type="submit" class="btn btn-primary">Lưu phiếu nhập</button>
         </form>
     </div>
@@ -69,7 +62,6 @@
 
             // Gán nút xóa
             newRow.querySelector(".btn-danger").onclick = function() { removeRow(this); };
-
             tableBody.appendChild(newRow);
         }
 
@@ -84,7 +76,6 @@
     </script>
 </div>
 
-<!-- Script JS -->
 
 </body>
 

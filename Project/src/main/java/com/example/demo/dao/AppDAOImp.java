@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public class AppDAOImp implements AppDAO{
     private EntityManager entityManager;
-
     public AppDAOImp(EntityManager entityManager) {
         this.entityManager = entityManager;
     }

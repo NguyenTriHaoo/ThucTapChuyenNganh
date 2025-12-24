@@ -9,7 +9,6 @@ import java.util.Optional;
 public interface InventoryDao {
     //Ko phai danh sach nen dung optional
     Optional<Inventory> findByProduct(Product product);
-
     Inventory save(Inventory inventory);
     List<Inventory> findAll();
 }

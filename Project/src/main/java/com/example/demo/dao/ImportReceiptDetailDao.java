@@ -6,8 +6,6 @@ import java.util.List;
 
 public interface ImportReceiptDetailDao {
     List<ImportReceiptDetail> findByReceiptId(int receiptId);
-
     ImportReceiptDetail save(ImportReceiptDetail detail);
-
     void deleteById(int id);
 }
