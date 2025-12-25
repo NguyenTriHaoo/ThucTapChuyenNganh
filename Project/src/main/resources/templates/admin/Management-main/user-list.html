@@ -11,16 +11,13 @@
 <div layout:fragment="main-content">
 
     <div class="container mt-4">
-
-        <!-- TIÊU ĐỀ -->
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h3>Quản lý người dùng</h3>
-            <a th:href="@{/admin/users/create}" class="btn btn-success">
-                + Thêm user
+            <a th:href="@{/admin/Management-main/user-list/create}" class="btn btn-success">
+                Thêm user
             </a>
         </div>
 
-        <!-- THÔNG BÁO -->
         <div th:if="${success}" class="alert alert-success text-center">
             <span th:text="${success}"></span>
         </div>
@@ -28,8 +25,7 @@
             <span th:text="${error}"></span>
         </div>
 
-        <!-- TÌM KIẾM -->
-        <form th:action="@{/admin/users}" method="get" class="row mb-3">
+        <form th:action="@{/admin/Management-main/user-list}" method="get" class="row mb-3">
             <div class="col-md-4">
                 <input type="text"
                        name="keyword"
@@ -42,14 +38,12 @@
             </div>
         </form>
 
-        <!-- BẢNG USER -->
+
         <table class="table table-bordered table-hover align-middle text-center">
             <thead class="table-light">
             <tr>
-                <th>ID</th>
                 <th>Username</th>
-                <th>Email</th>
-                <th>Role</th>
+                <th>Roles</th>
                 <th>Trạng thái</th>
                 <th>Action</th>
             </tr>
@@ -57,60 +51,49 @@
             <tbody>
 
             <tr th:each="u : ${users}">
-                <td th:text="${u.id}"></td>
                 <td th:text="${u.username}"></td>
-                <td th:text="${u.email}"></td>
-                <td th:text="${u.role}"></td>
 
                 <td>
-                    <span th:if="${u.enabled}"
-                          class="badge bg-success">Hoạt động</span>
-                    <span th:if="${!u.enabled}"
-                          class="badge bg-danger">Đã khóa</span>
+                    <span th:each="a : ${u.authorities != null ? u.authorities : {}}"
+                          th:class="'badge me-1 ' + (a.authority=='ROLE_ADMIN' ? 'bg-danger' : 'bg-info')"
+                          th:text="${a.authority}"></span>
                 </td>
 
                 <td>
-                    <!-- SỬA -->
-                    <a th:href="@{/admin/users/edit/{id}(id=${u.id})}"
-                       class="btn btn-warning btn-sm">
-                        Sửa
-                    </a>
+                    <span th:if="${u.enabled}" class="badge bg-success">Hoạt động</span>
+                    <span th:if="${!u.enabled}" class="badge bg-secondary">Đã khóa</span>
+                </td>
 
-                    <!-- KHÓA / MỞ -->
+                <td>
+
+                    <a th:href="@{/admin/Management-main/user-list/edit/{username}(username=${u.username})}"
+                       class="btn btn-warning btn-sm">Sửa</a>
+
                     <form th:if="${u.enabled}"
-                          th:action="@{/admin/users/lock/{id}(id=${u.id})}"
+                          th:action="@{/admin/Management-main/user-list/lock/{username}(username=${u.username})}"
                           method="post"
                           style="display:inline">
-                        <button class="btn btn-secondary btn-sm">
-                            Khóa
-                        </button>
+                        <button class="btn btn-secondary btn-sm">Khóa</button>
                     </form>
 
                     <form th:if="${!u.enabled}"
-                          th:action="@{/admin/users/unlock/{id}(id=${u.id})}"
+                          th:action="@{/admin/Management-main/user-list/unlock/{username}(username=${u.username})}"
                           method="post"
                           style="display:inline">
-                        <button class="btn btn-success btn-sm">
-                            Mở
-                        </button>
+                        <button class="btn btn-success btn-sm">Mở</button>
                     </form>
 
-                    <!-- XÓA -->
-                    <form th:action="@{/admin/users/delete/{id}(id=${u.id})}"
+                    <form th:action="@{/admin/Management-main/user-list/delete/{username}(username=${u.username})}"
                           method="post"
                           style="display:inline"
                           onsubmit="return confirm('Bạn có chắc muốn xóa user này?')">
-                        <button class="btn btn-danger btn-sm">
-                            Xóa
-                        </button>
+                        <button class="btn btn-danger btn-sm">Xóa</button>
                     </form>
                 </td>
             </tr>
 
-            <tr th:if="${users.empty}">
-                <td colspan="6" class="text-muted">
-                    Không có người dùng nào
-                </td>
+            <tr th:if="${users == null or #lists.isEmpty(users)}">
+                <td colspan="5" class="text-muted">Không có người dùng nào</td>
             </tr>
 
             </tbody>
