@@ -69,11 +69,8 @@
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-building-warehouse"></i></span><span class="pc-mtext">Storage</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>
                     <ul class="pc-submenu">
-                        <li class="pc-item"><a class="pc-link" th:href="@{/admin/Storage-main/add-storage}">Add-Storage-List</a></li>
-                        <li class="pc-item">
-                            <a th:href="@{/admin/Storage-main/export-storage}" class="pc-link">Export-Storage-List</a>
-                        </li>
                         <li class="pc-item"><a class="pc-link" th:href="@{/admin/Storage-main/import-receipt-list}">Import-Receipt-List</a></li>
+                        <li class="pc-item"><a class="pc-link" th:href="@{/admin/Storage-main/export-receipt-list}">Export-Receipt-List</a></li>
                         <li class="pc-item"><a class="pc-link" th:href="@{/admin/Storage-main/inventory}">Inventory</a></li>
                     </ul>
                 </li>
@@ -84,8 +81,6 @@
                     <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-man"></i></span><span class="pc-mtext">Management</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>
                     <ul class="pc-submenu">
                         <li class="pc-item"><a class="pc-link" th:href="@{/admin/Management-main/user}">User</a></li>
-                        <li class="pc-item">
-                            <a th:href="@{/admin/Management-main/role}" class="pc-link">Role</a>
                     </ul>
                 </li>
                 <li style="list-style: none; margin-left: 50px; margin-top: 50px;">

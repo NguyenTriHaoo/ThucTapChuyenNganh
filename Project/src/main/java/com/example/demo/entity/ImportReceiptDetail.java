@@ -13,11 +13,11 @@ public class ImportReceiptDetail {
         private float price;
 
         @ManyToOne
-        @JoinColumn(name = "receipt_id")
+        @JoinColumn(name = "receipt_id", nullable = false)
         private ImportReceipt receipt;
 
         @ManyToOne
-        @JoinColumn(name = "product_id")
+        @JoinColumn(name = "product_id", nullable = false)
         private Product product;
 
 

@@ -27,14 +27,20 @@
                 <td th:text="${r.id}"></td>
                 <td th:text="${r.importDateStr}"></td> <!-- dùng getter mới -->
                 <td th:text="${r.supplier}"></td>
+
                 <td>
                     <span th:if="${r.status == 0}" class="badge bg-warning">Chờ duyệt</span>
                     <span th:if="${r.status == 1}" class="badge bg-success">Đã nhập</span>
                 </td>
                 <td>
-                    <a th:if="${r.status == 0}"
-                       th:href="@{/admin/Storage-main/import-receipt-list-approve/{id}(id=${r.id})}"
-                       class="btn btn-primary btn-sm">Duyệt</a>
+                    <form th:if="${r.status == 0}"
+                          th:action="@{/admin/Storage-main/import-receipt-list-approve/{id}(id=${r.id})}"
+                          method="post"
+                          style="display:inline">
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            Duyệt
+                        </button>
+                    </form>
 
                     <a th:href="@{/admin/Storage-main/import-receipt-list-detail/{id}(id=${r.id})}">Chi tiet</a>
                 </td>

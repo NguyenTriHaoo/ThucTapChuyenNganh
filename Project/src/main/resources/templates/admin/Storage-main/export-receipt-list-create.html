@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="https://www.ultraq.net/thymeleaf/layout"
+      layout:decorate="~{admin/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Tạo phiếu xuất kho</title>
+</head>
+<body>
+<div layout:fragment="main-content">
+    <div class="container mt-4">
+        <h3>Tạo phiếu xuất kho</h3>
+        <form th:action="@{/admin/Storage-main/export-receipt-list-save}" method="post">
+            <div class="mb-3">
+                <label>Người nhận:</label>
+                <input type="text" name="receiver" class="form-control" required>
+            </div>
+
+            <h5>Sản phẩm</h5>
+            <table class="table table-bordered" id="productsTable">
+                <thead>
+                <tr>
+                    <th>Sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <select name="productId[]" class="form-select">
+                            <option th:each="p : ${products}" th:value="${p.id}" th:text="${p.title}"></option>
+                        </select>
+                    </td>
+                    <td><input type="number" name="quantity[]" class="form-control" min="1" value="1"></td>
+                    <td><button type="button" class="btn btn-danger" onclick="removeRow(this)">Xóa</button></td>
+                </tr>
+                </tbody>
+            </table>
+            <button type="button" class="btn btn-secondary mb-3" onclick="addRow()">Thêm sản phẩm</button>
+            <br/>
+            <button type="submit" class="btn btn-primary">Lưu phiếu xuất</button>
+        </form>
+    </div>
+
+    <script>
+        function addRow() {
+            const tableBody = document.querySelector("#productsTable tbody");
+            const firstRow = tableBody.querySelector("tr");
+            const newRow = firstRow.cloneNode(true);
+
+            // Reset các input
+            newRow.querySelectorAll('input').forEach(input => {
+                if(input.type === 'number') input.value = input.name === 'quantity[]' ? 1 : 0;
+            });
+
+            // Reset select về giá trị đầu tiên
+            const select = newRow.querySelector('select');
+            select.selectedIndex = 0;
+
+            // Gán nút xóa
+            newRow.querySelector(".btn-danger").onclick = function() { removeRow(this); };
+            tableBody.appendChild(newRow);
+        }
+
+        function removeRow(button) {
+            const tableBody = document.querySelector("#productsTable tbody");
+            if (tableBody.querySelectorAll("tr").length > 1) {
+                button.closest('tr').remove();
+            } else {
+                alert("Phải có ít nhất một sản phẩm trong phiếu xuất!");
+            }
+        }
+    </script>
+</div>
+</body>
+</html>

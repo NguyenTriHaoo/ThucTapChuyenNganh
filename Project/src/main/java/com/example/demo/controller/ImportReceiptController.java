@@ -9,6 +9,7 @@ import com.example.demo.entity.Product;
 import com.example.demo.service.ImportReceiptDetailService;
 import com.example.demo.service.ImportReceiptService;
 import com.example.demo.service.InventoryService;
+import com.example.demo.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,72 +20,51 @@ import java.util.List;
 public class ImportReceiptController {
     @Autowired
     private ImportReceiptService importReceiptService;
-
     @Autowired
-    private ProductDAO productDAO;
-
+    private ProductService productService;
     @Autowired
     private InventoryService inventoryService;
 
-    @Autowired
-    private ImportReceiptDetailDao importReceiptDetailDao;
     //ds phieu nhap
     @GetMapping("admin/Storage-main/import-receipt-list")
-    public String list(Model model){
-        List<ImportReceipt> receipts = importReceiptService.findAll();
-        model.addAttribute("receipts", receipts);
+    public String list(Model model) {
+        model.addAttribute("receipts", importReceiptService.findAll());
         return "admin/Storage-main/import-receipt-list";
     }
 
     // from tao phieu nhap
     @GetMapping("admin/Storage-main/import-receipt-list-create")
     public String createForm(Model model) {
-        model.addAttribute("receipt", new ImportReceipt());
-        model.addAttribute("products", productDAO.findAll());
+        model.addAttribute("products", productService.findAll());
         return "admin/Storage-main/import-receipt-list-create";
     }
 
     //luu phieu nhap nhung chua cong ton kho
     @PostMapping("admin/Storage-main/import-receipt-list-save")
-    public String save(@ModelAttribute ImportReceipt receipt,
-                       @RequestParam("productId[]") List<Integer> productIds,
-                       @RequestParam("quantity[]") List<Integer> quantities,
-                       @RequestParam("price[]") List<Float> prices) {
-
-        for (int i = 0; i < productIds.size(); i++) {
-            Product product = productDAO.findById(productIds.get(i));
-            ImportReceiptDetail detail = new ImportReceiptDetail();
-            detail.setProduct(product);
-            detail.setQuantity(quantities.get(i));
-            detail.setPrice(prices.get(i));
-            detail.setReceipt(receipt);
-            receipt.getDetails().add(detail);
-        }
-
-        importReceiptService.save(receipt);
+    public String save(
+            @RequestParam String supplier,
+            @RequestParam("productId[]") List<Integer> productIds,
+            @RequestParam("quantity[]") List<Integer> quantities,
+            @RequestParam("price[]") List<Float> prices)
+    {
+        importReceiptService.createReceipt(supplier, productIds, quantities, prices);
         return "redirect:/admin/Storage-main/import-receipt-list";
     }
 
 
-    @GetMapping("admin/Storage-main/import-receipt-list-approve/{id}")
-        public String approve(@PathVariable int id){
-            ImportReceipt receipt = importReceiptService.findById(id).orElseThrow();
-            if(receipt.getStatus()==0){
-                receipt.getDetails().forEach(d->inventoryService.increase(d.getProduct(),d.getQuantity()));
-                receipt.setStatus(1);
-                importReceiptService.save(receipt);
-            }
-            return "redirect:/admin/Storage-main/import-receipt-list";
-        }
+    @PostMapping("admin/Storage-main/import-receipt-list-approve/{id}")
+    public String approve(@PathVariable int id) {
+        importReceiptService.approveReceipt(id);
+        return "redirect:/admin/Storage-main/import-receipt-list";
+    }
 
     @GetMapping("admin/Storage-main/import-receipt-list-detail/{id}")
-    public String viewDetail(@PathVariable("id") int id, Model model) {
+    public String viewDetail(@PathVariable int id, Model model) {
         ImportReceipt receipt = importReceiptService.findById(id)
                 .orElseThrow(() -> new RuntimeException("Phiếu nhập không tồn tại"));
 
-        List<ImportReceiptDetail> details = importReceiptDetailDao.findByReceiptId(id);
         model.addAttribute("receipt", receipt);
-        model.addAttribute("details", details);
+        model.addAttribute("details", receipt.getDetails());
         return "admin/Storage-main/import-receipt-list-detail";
     }
 }

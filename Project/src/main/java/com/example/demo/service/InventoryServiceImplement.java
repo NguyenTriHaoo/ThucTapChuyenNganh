@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -31,15 +32,21 @@ public class InventoryServiceImplement implements InventoryService{
     }
 
     @Override
-    public void decrease(Product product, int qty) {
-        Inventory inventory = inventoryDao.findByProduct(product)
-                .orElseThrow(() -> new RuntimeException("Chua co ton kho"));
+    public boolean  decrease(Product product, int qty) {
+        Optional<Inventory> opt = inventoryDao.findByProduct(product);
+
+        if (opt.isEmpty()) {
+            return false;
+        }
+
+        Inventory inventory = opt.get();
         if(inventory.getQuantity()<qty){
-            throw new RuntimeException("Khong du ton kho");
+            return false;
         }
         inventory.setQuantity(inventory.getQuantity() - qty);
         inventory.setLastUpdated(LocalDateTime.now());
         inventoryDao.save(inventory);
+        return true;
     }
 
     @Override

@@ -6,9 +6,16 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ImportReceiptService {
-        ImportReceipt save(ImportReceipt receipt);
-        ImportReceipt update(ImportReceipt receipt);
-        void deleteById(int id);
-        Optional<ImportReceipt> findById(int id);
-        List<ImportReceipt> findAll();
+    ImportReceipt createReceipt(
+            String supplier,
+            List<Integer> productIds,
+            List<Integer> quantities,
+            List<Float> prices
+    );
+
+    void approveReceipt(int receiptId);
+
+    List<ImportReceipt> findAll();
+
+    Optional<ImportReceipt> findById(int id);
 }

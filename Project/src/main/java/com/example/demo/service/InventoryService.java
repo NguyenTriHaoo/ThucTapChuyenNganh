@@ -5,7 +5,7 @@ import com.example.demo.entity.Product;
 
 public interface InventoryService {
     void increase(Product product,int qty); //qty = so luong nhap
-    void decrease(Product product,int qty);
+    boolean decrease(Product product,int qty);
 
     Inventory findByProduct(Product product);
     boolean isLowStock(Inventory inventory);
