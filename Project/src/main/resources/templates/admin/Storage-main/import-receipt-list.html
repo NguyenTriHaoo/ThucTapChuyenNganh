@@ -33,16 +33,43 @@
                     <span th:if="${r.status == 1}" class="badge bg-success">Đã nhập</span>
                 </td>
                 <td>
-                    <form th:if="${r.status == 0}"
-                          th:action="@{/admin/Storage-main/import-receipt-list-approve/{id}(id=${r.id})}"
-                          method="post"
-                          style="display:inline">
-                        <button type="submit" class="btn btn-primary btn-sm">
-                            Duyệt
-                        </button>
-                    </form>
+                    <div class="d-flex justify-content-center align-items-center gap-2">
 
-                    <a th:href="@{/admin/Storage-main/import-receipt-list-detail/{id}(id=${r.id})}">Chi tiet</a>
+                        <!-- Nút Duyệt (chỉ khi status = 0) -->
+                        <form th:if="${r.status == 0}"
+                              th:action="@{/admin/Storage-main/import-receipt-list-approve/{id}(id=${r.id})}"
+                              method="post"
+                              style="margin:0"
+                              onsubmit="return confirm('Bạn có chắc muốn duyệt phiếu nhập này không?');">
+
+                            <button type="submit"
+                                    class="btn btn-sm"
+                                    style="background: linear-gradient(135deg, #0d6efd, #3b82f6);color: #fff;
+                                    font-weight: 500;border-radius: 8px;padding: 4px 14px;transition: all 0.25s ease;"
+                                    onmouseover="this.style.transform='translateY(-2px)';"
+                                    onmouseout="this.style.transform='none';">
+                                <i class="bi bi-check-circle me-1"></i> Duyệt
+                            </button>
+                        </form>
+
+                        <!-- Nút Chi tiết -->
+                        <a th:href="@{/admin/Storage-main/import-receipt-list-detail/{id}(id=${r.id})}"
+                           class="btn btn-sm"
+                           style="
+                background: linear-gradient(135deg, #6c757d, #adb5bd);
+                color: #fff;
+                font-weight: 500;
+                border-radius: 8px;
+                padding: 4px 14px;
+                transition: all 0.25s ease;
+                text-decoration: none;
+           "
+                           onmouseover="this.style.transform='translateY(-2px)';"
+                           onmouseout="this.style.transform='none';">
+                            <i class="bi bi-eye me-1"></i> Chi tiết
+                        </a>
+
+                    </div>
                 </td>
             </tr>
             </tbody>
