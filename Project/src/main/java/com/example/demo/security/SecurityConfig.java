@@ -52,7 +52,7 @@ public class SecurityConfig {
                                         "/cssProduct-Cate-Shop/**",
                                         "/vendor/**"
                                 ).permitAll()
-                                .requestMatchers("/admin/**").hasRole("MANAGER")
+                                .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .requestMatchers("/user/**").hasAnyRole("ADMIN","USER")
                                 .anyRequest().authenticated()
                 )

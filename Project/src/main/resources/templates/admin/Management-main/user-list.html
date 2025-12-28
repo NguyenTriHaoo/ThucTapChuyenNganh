@@ -38,7 +38,7 @@
                 <th>Username</th>
                 <th>Roles</th>
                 <th>Trạng thái</th>
-                <th>Action</th>
+<!--                <th>Action</th>-->
             </tr>
             </thead>
             <tbody>
@@ -57,32 +57,32 @@
                     <span th:if="${!u.enabled}" class="badge bg-secondary">Đã khóa</span>
                 </td>
 
-                <td>
+<!--                <td>-->
 
-                    <a th:href="@{/admin/Management-main/user-list/edit/{username}(username=${u.username})}"
-                       class="btn btn-warning btn-sm">Sửa</a>
+<!--                    <a th:href="@{/admin/Management-main/user-list/edit/{username}(username=${u.username})}"-->
+<!--                       class="btn btn-warning btn-sm">Sửa</a>-->
 
-                    <form th:if="${u.enabled}"
-                          th:action="@{/admin/Management-main/user-list/lock/{username}(username=${u.username})}"
-                          method="post"
-                          style="display:inline">
-                        <button class="btn btn-secondary btn-sm">Khóa</button>
-                    </form>
+<!--                    <form th:if="${u.enabled}"-->
+<!--                          th:action="@{/admin/Management-main/user-list/lock/{username}(username=${u.username})}"-->
+<!--                          method="post"-->
+<!--                          style="display:inline">-->
+<!--                        <button class="btn btn-secondary btn-sm">Khóa</button>-->
+<!--                    </form>-->
 
-                    <form th:if="${!u.enabled}"
-                          th:action="@{/admin/Management-main/user-list/unlock/{username}(username=${u.username})}"
-                          method="post"
-                          style="display:inline">
-                        <button class="btn btn-success btn-sm">Mở</button>
-                    </form>
+<!--                    <form th:if="${!u.enabled}"-->
+<!--                          th:action="@{/admin/Management-main/user-list/unlock/{username}(username=${u.username})}"-->
+<!--                          method="post"-->
+<!--                          style="display:inline">-->
+<!--                        <button class="btn btn-success btn-sm">Mở</button>-->
+<!--                    </form>-->
 
-                    <form th:action="@{/admin/Management-main/user-list/delete/{username}(username=${u.username})}"
-                          method="post"
-                          style="display:inline"
-                          onsubmit="return confirm('Bạn có chắc muốn xóa user này?')">
-                        <button class="btn btn-danger btn-sm">Xóa</button>
-                    </form>
-                </td>
+<!--                    <form th:action="@{/admin/Management-main/user-list/delete/{username}(username=${u.username})}"-->
+<!--                          method="post"-->
+<!--                          style="display:inline"-->
+<!--                          onsubmit="return confirm('Bạn có chắc muốn xóa user này?')">-->
+<!--                        <button class="btn btn-danger btn-sm">Xóa</button>-->
+<!--                    </form>-->
+<!--                </td>-->
             </tr>
 
             <tr th:if="${users == null or #lists.isEmpty(users)}">

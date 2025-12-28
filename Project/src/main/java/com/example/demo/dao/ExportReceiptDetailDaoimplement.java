@@ -15,8 +15,7 @@ public class ExportReceiptDetailDaoimplement implements ExportReceiptDetailDao{
 
     @Override
     public List<ExportReceiptDetail> findByReceiptId(int receiptId) {
-        return em.createQuery(
-                        "SELECT d FROM ExportReceiptDetail d WHERE d.receipt.id = :rid",
+        return em.createQuery("SELECT d FROM ExportReceiptDetail d WHERE d.receipt.id = :rid",
                         ExportReceiptDetail.class)
                 .setParameter("rid", receiptId)
                 .getResultList();
