@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class ShopController {
     @GetMapping("/")
     public  String listShop(Model model){
         List<Category> categories = categoryService.findAll();
-        List<Product> products = productService.findAll();
+        List<Product> products = productService.findByStatus();
         model.addAttribute("products",products);
         model.addAttribute("categories",categories);
         return "indexnhacungcap";
@@ -39,8 +40,21 @@ public class ShopController {
 
     @GetMapping("/home/homeProduct")
     public String listProduct(Model model){
-        List<Product> products = productService.findAll();
+        List<Product> products = productService.findByStatus();
         model.addAttribute("products",products);
         return "home/homeProduct";
+    }
+
+    @GetMapping("/search")
+    public String search(
+            @RequestParam("keyword") String keyword,
+            Model model
+    ) {
+        List<Product> products = productService.searchByKeyword(keyword);
+
+        model.addAttribute("products", products);
+        model.addAttribute("keyword", keyword);
+
+        return "home/homeSearchResult";
     }
 }

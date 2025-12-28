@@ -31,6 +31,8 @@
                     <div class="col"
                          th:each="product, stat : ${products}"
                          th:if="${stat.index < 8}">
+                        <a th:href="@{/product/{id}(id=${product.id})}"
+                           style="text-decoration:none;color:inherit;">
                         <div class="product-item border rounded p-3 shadow-sm text-center" style="height: 280px;">
                             <figure>
                                 <img th:src="${product.image}" style="height: 200px; width:200px;">
@@ -40,6 +42,7 @@
                                 [[${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}]] đ
                             </div>
                         </div>
+                        </a>
                     </div>
                 </div>
             </div>

@@ -143,35 +143,31 @@
                     <!-- ADMIN -->
                     <li sec:authorize="hasRole('ADMIN')">
                         <a th:href="@{/admin}"
-                           style="
-             padding:8px 16px;
-             border-radius:20px;
-             background:#0F172A;
-             color:#fff;
-             font-weight:600;
-             transition:.3s;
-           "
+                           style="padding:8px 16px;border-radius:20px; background:#0F172A;color:#fff;
+                              font-weight:600;transition:.3s;"
                            onmouseover="this.style.background='#2563EB'"
                            onmouseout="this.style.background='#0F172A'">
                             <i class="fa fa-cog me-1"></i> Admin
                         </a>
                     </li>
                 </ul>
+            </div>
 
-            </div>
-            <!-- Icon header -->
-            <div class="wrap-icon-header flex-w flex-r-m" >
-                <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11"
-                     style="border-bottom: solid 1px;display: flex; align-items: center; padding: 1px; transition: 0.3s; width: 325px;">
-                    <i class="zmdi zmdi-search"
-                       style="font-size: 18px; color: #2b101eff; margin-right: 8px;"></i>
-                    <input class="mtext-107 cl2 size-114 plh2 p-r-15"
-                           type="text"
-                           name="search-product"
-                           placeholder="Tìm sản phẩm"
-                           style=" outline: none; background: transparent; width: 100%; font-size: 14px; color: #555;">
+            <form th:action="@{/search}" method="get" class="ms-auto">
+                <div class="wrap-icon-header flex-w flex-r-m">
+                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11"
+                         style="border-bottom: solid 1px;display: flex; align-items: center; padding: 1px; width: 325px;">
+                        <i class="zmdi zmdi-search"
+                           style="font-size: 18px; color: #2b101eff; margin-right: 8px;"></i>
+                        <input class="mtext-107 cl2 size-114 plh2 p-r-15"
+                               type="text"
+                               name="keyword"
+                               placeholder="Tìm sản phẩm"
+                               th:value="${keyword}"
+                               style="outline: none; background: transparent; width: 100%;">
+                    </div>
                 </div>
-            </div>
+            </form>
         </nav>
     </div>
 

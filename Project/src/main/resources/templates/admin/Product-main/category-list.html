@@ -10,21 +10,22 @@
 <div layout:fragment="main-content">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h3 class="fw-bold">Danh sách danh mục</h3>
+        <div th:if="${error}" class="alert alert-danger">
+            <i class="bi bi-exclamation-triangle-fill me-1"></i>
+            <span th:text="${error}"></span>
+        </div>
         <a th:href="@{/admin/Product-main/category-list-create}"
            class="btn"
-           style="
-                background: linear-gradient(135deg, #28a745, #20c997);
-                color: #fff;
-                font-weight: 600;
+           style="background: linear-gradient(135deg, #28a745, #20c997);color: #fff;font-weight: 600;
                 padding: 8px 20px;
                 border-radius: 12px;
                 box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-                transition: all 0.25s ease;
-           "
+                transition: all 0.25s ease;"
            onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 18px rgba(0,0,0,0.22)';"
            onmouseout="this.style.transform='none'; this.style.boxShadow='0 4px 10px rgba(0,0,0,0.15)';">
             <i class="bi bi-plus-circle me-1"></i> Thêm mới
         </a>
+
     </div>
 
     <div class="table-responsive">

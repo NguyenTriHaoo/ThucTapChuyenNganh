@@ -66,4 +66,35 @@ public class ProductDAOimplement implements ProductDAO{
         TypedQuery<Long> query = em.createQuery("SELECT COUNT(p) FROM Product p WHERE p.status = 0", Long.class);
         return query.getSingleResult();
     }
+
+    @Override
+    public long countByCategoryId(int categoryId) {
+        return em.createQuery(
+                        "SELECT COUNT(p) FROM Product p WHERE p.category.id = :cid",
+                        Long.class)
+                .setParameter("cid", categoryId)
+                .getSingleResult();
+    }
+
+    @Override
+    public List<Product> searchByKeyword(String keyword) {
+        String jpql = """
+                FROM Product p
+                WHERE p.status = 1
+                AND lower(p.title) LIKE :kw
+                """;
+        TypedQuery<Product> query = em.createQuery(jpql, Product.class);
+        query.setParameter("kw", "%" + keyword.toLowerCase() + "%");
+
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Product> findByStatus() {
+        TypedQuery<Product> query = em.createQuery(
+                "FROM Product p WHERE p.status = 1",
+                Product.class
+        );
+        return query.getResultList();
+    }
 }

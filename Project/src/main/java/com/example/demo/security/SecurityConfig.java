@@ -37,7 +37,8 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(configurer ->
                         configurer.requestMatchers(
-                                "/",
+                                "/search",
+                                        "/",
                                         "/login",
                                         "/oauth2/**",
                                         "/error",

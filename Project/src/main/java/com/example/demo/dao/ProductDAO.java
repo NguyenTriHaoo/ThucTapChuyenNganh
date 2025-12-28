@@ -12,4 +12,7 @@ public interface ProductDAO {
     long countAll();
     long countActive();
     long countInactive();
+    long countByCategoryId(int categoryId);
+    List<Product> searchByKeyword(String keyword);
+    List<Product> findByStatus();
 }

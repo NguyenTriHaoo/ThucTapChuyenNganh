@@ -12,4 +12,6 @@ public interface ProductService {
     long countAll();
     long countActive();
     long countInactive();
+    List<Product> searchByKeyword(String keyword);
+    List<Product> findByStatus();
 }

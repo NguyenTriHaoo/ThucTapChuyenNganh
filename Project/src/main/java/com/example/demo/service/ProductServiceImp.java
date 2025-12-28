@@ -47,4 +47,13 @@ public class ProductServiceImp implements ProductService{
     public long countInactive() {
         return productDAO.countInactive();
     }
+
+    @Override
+    public List<Product> searchByKeyword(String keyword) {
+        return productDAO.searchByKeyword(keyword);
+    }
+    @Override
+    public List<Product> findByStatus() {
+        return productDAO.findByStatus();
+    }
 }

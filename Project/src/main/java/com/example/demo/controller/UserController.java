@@ -18,10 +18,12 @@ public class UserController {
 
     @GetMapping("admin/Management-main/user-list")
     public String list(Model model) {
-        List<User> users = userService.findAll();
 
+        List<User> users = userService.findAll();
         users.forEach(u -> {
-            if (u.getAuthorities() != null) u.getAuthorities().size();
+            if (u.getAuthorities() != null) {
+                u.getAuthorities().size();
+            }
         });
 
         model.addAttribute("users", users);

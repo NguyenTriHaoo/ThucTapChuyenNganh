@@ -36,9 +36,14 @@
 
                 <form th:action="@{/authenticateTheUser}" method="post">
                     <div class="card-body">
-                        <div th:if="${param.err != null}"
+                        <div th:if="${param.err != null and param.err[0] == 'user'}"
                              class="alert alert-danger text-center">
-                            Sai tài khoản hoặc mật khẩu
+                            Tài khoản không tồn tại !!!
+                        </div>
+
+                        <div th:if="${param.err != null and param.err[0] == 'pass'}"
+                             class="alert alert-danger text-center">
+                            Mật khẩu không chính xác !!!
                         </div>
 
                         <h3 class="mb-4 text-center"><b>Login</b></h3>
